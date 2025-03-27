@@ -1,11 +1,11 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
-// Function to print the board
 void printBoard(const vector<vector<char>>& board) {
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
+    for(int i = 0; i < 3; i++) 
+    {
+        for(int j = 0; j < 3; j++) 
+        {
             cout << board[i][j] << " ";
         }
         cout << endl;
@@ -13,61 +13,78 @@ void printBoard(const vector<vector<char>>& board) {
 }
 
 // Function to check if someone has won
-bool checkWin(const vector<vector<char>>& board, char player) {
+bool checkWin(const vector<vector<char>>& board, char player) 
+{
     // Check rows
-    for (int i = 0; i < 3; i++) {
+    for(int i = 0; i < 3; i++) 
+    {
         if (board[i][0] == player && board[i][1] == player && board[i][2] == player)
             return true;
     }
     // Check columns
-    for (int i = 0; i < 3; i++) {
+    for(int i = 0; i < 3; i++)     
+    {
         if (board[0][i] == player && board[1][i] == player && board[2][i] == player)
             return true;
     }
     // Check diagonals
-    if (board[0][0] == player && board[1][1] == player && board[2][2] == player)
-        return true;
-    if (board[0][2] == player && board[1][1] == player && board[2][0] == player)
-        return true;
-    
+    if(board[0][0] == player && board[1][1] == player && board[2][2] == player)
+        {
+            return true;
+        }
+    if(board[0][2] == player && board[1][1] == player && board[2][0] == player)
+        {
+            return true;
+        }    
     return false;
 }
 
 // Function to check for a draw
-bool checkDraw(const vector<vector<char>>& board) {
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            if (board[i][j] == ' ') return false;
+bool checkDraw(const vector<vector<char>>& board) 
+{
+    for(int i = 0; i < 3; i++) 
+    {
+        for (int j = 0; j < 3; j++) 
+        {
+            if(board[i][j] == ' ') 
+                {
+                    return false;
+                }
         }
     }
     return true;
 }
 
-int main() {
+int main() 
+{
     vector<vector<char>> board(3, vector<char>(3, ' '));  // Initialize a 3x3 board with empty spaces
     int row, col;
     char player = 'X';
 
-    while (true) {
+    while (true) 
+    {
         printBoard(board);
         cout << "Player " << player << "'s turn!" << endl;
         cout << "Enter row (0-2) and column (0-2): ";
         cin >> row >> col;
 
-        if (board[row][col] != ' ') {
+        if(board[row][col] != ' ') 
+        {
             cout << "Cell already occupied. Try again!" << endl;
             continue;
         }
 
         board[row][col] = player;
 
-        if (checkWin(board, player)) {
+        if(checkWin(board, player)) 
+        {
             printBoard(board);
             cout << "Player " << player << " wins!" << endl;
             break;
         }
 
-        if (checkDraw(board)) {
+        if(checkDraw(board)) 
+        {
             printBoard(board);
             cout << "It's a draw!" << endl;
             break;
